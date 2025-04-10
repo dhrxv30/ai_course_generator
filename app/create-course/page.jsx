@@ -8,33 +8,8 @@ import SelectOptions from "./_components/SelectOptions";
 import { UserInpuContext } from "../_context/UserInputContext";
 import { GenerateCourseLayout_AI } from "@/configs/AiModel";
 import LoadingDialouge from "./_components/LoadingDialouge";
-import { CourseList } from "@/configs/schema";
-import { db } from "@/configs/db";
-
-// 🧠 Server Action (must be at the top, outside the component)
-export async function saveCourseLaoyoutdb(courseInput, courseLayout) {
-  "use server";
-
-  try {
-    const { topic, difficulty, Category, createdBy = "anonymous", userName = "guest" } = courseInput;
-
-    await db.insert(CourseList).values({
-      courseId: crypto.randomUUID(),
-      name: topic,
-      difficulty,
-      Category,
-      courseOutput: courseLayout,
-      createdBy,
-      userName,
-    });
-
-    console.log("✅ Course saved to DB.");
-    return { success: true };
-  } catch (error) {
-    console.error("❌ Error saving course:", error);
-    return { success: false, error: error.message };
-  }
-}
+import uuid4 from "uuid4";
+import { useRouter } from "next/navigation"; // ✅ useRouter from next/navigation for app router
 
 const CreateCourse = () => {
   const StepperOptions = [
@@ -43,70 +18,75 @@ const CreateCourse = () => {
     { id: 3, name: "Options", icon: <HiMiniClipboardDocumentCheck /> },
   ];
 
-  const { userCourseInput, setUserCourseInput } = useContext(UserInpuContext);
+  const { userCourseInput } = useContext(UserInpuContext);
   const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     console.log(userCourseInput);
   }, [userCourseInput]);
 
   const checkStatus = () => {
-    if (userCourseInput?.length == 0) return true;
-
-    if ((activeIndex == 0 && !userCourseInput?.Category) ||
-        (activeIndex == 1 && !userCourseInput?.topic)) {
-      return true;
-    }
-
+    if (!userCourseInput) return true;
+    if (activeIndex === 0 && !userCourseInput?.Category) return true;
+    if (activeIndex === 1 && !userCourseInput?.topic) return true;
     return false;
   };
 
   const GenerateCourseLayout = async () => {
     setLoading(true);
 
-    const BASIC_PROMPT =
-      "Generate a Course Tutorial on Following Details with field as course Name , Description, along with chapter name , about:";
-    const USER_INPUT_PROMPT =
-      "Category:" +
-      userCourseInput?.Category +
-      ", Topic:" +
-      userCourseInput?.topic +
-      ", Level:" +
-      userCourseInput?.difficulty +
-      ", Duration:" +
-      userCourseInput?.duration +
-      ", NoOfChapters:" +
-      userCourseInput?.noOfChapters +
-      " in JSON format";
+    const prompt =
+      `Generate a Course Tutorial on Following Details with field as course Name, Description, along with chapter name. ` +
+      `Category: ${userCourseInput?.Category}, Topic: ${userCourseInput?.topic}, ` +
+      `Level: ${userCourseInput?.difficulty}, Duration: ${userCourseInput?.duration}, ` +
+      `NoOfChapters: ${userCourseInput?.noOfChapters} in JSON format`;
 
-    const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT;
-
-    console.log("📤 Sending Prompt:", FINAL_PROMPT);
-
-    const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
-    result.response.text =
-      result.response?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    console.log("📩 Raw Text Response:", result.response?.text);
-
-    let parsedLayout;
     try {
-      parsedLayout = JSON.parse(result.response?.text);
-      console.log("✅ Parsed JSON:", parsedLayout);
-    } catch (e) {
-      console.error("❌ Failed to parse JSON:", e.message);
-      setLoading(false);
-      return;
-    }
+      const result = await GenerateCourseLayout_AI.sendMessage(prompt);
+      const rawText = result.response?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    // 📥 Save to DB via server action
-    const saveResult = await saveCourseLaoyoutdb(userCourseInput, parsedLayout);
-    if (!saveResult.success) {
-      console.error("❌ DB Save Failed:", saveResult.error);
+      const parsedLayout = JSON.parse(rawText);
+      console.log("Parsed Layout:", parsedLayout);
+
+      const courseId = await saveCourseLaoyoutdb(parsedLayout); // ✅ get returned id
+      if (courseId) {
+        router.replace(`/create-course/${courseId}`); // ✅ route to dynamic page
+      }
+    } catch (e) {
+      console.error("Error parsing layout JSON:", e.message);
     }
 
     setLoading(false);
+  };
+
+  const saveCourseLaoyoutdb = async (courseLayout) => {
+    setLoading(true);
+    try {
+      const id = uuid4();
+      const response = await fetch("/api/save-course", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id,
+          courseInput: userCourseInput,
+          courseLayout,
+        }),
+      });
+
+      const res = await response.json();
+      if (res.success) {
+        console.log("✅ Course saved to database");
+        return id; // ✅ return ID
+      } else {
+        console.error("❌ DB Error:", res.error);
+      }
+    } catch (error) {
+      console.error("❌ Error sending request:", error);
+    }
+    setLoading(false);
+    return null;
   };
 
   return (
@@ -148,17 +128,11 @@ const CreateCourse = () => {
         )}
 
         <div className="flex items-center justify-between mt-10">
-          <Button
-            className="cursor-pointer"
-            disabled={activeIndex === 0}
-            variant="outline"
-            onClick={() => setActiveIndex(activeIndex - 1)}
-          >
+          <Button disabled={activeIndex === 0} variant="outline" onClick={() => setActiveIndex(activeIndex - 1)}>
             Back
           </Button>
-
           {activeIndex < 2 ? (
-            <Button className="cursor-pointer" onClick={() => setActiveIndex(activeIndex + 1)}>
+            <Button disabled={checkStatus()} onClick={() => setActiveIndex(activeIndex + 1)}>
               Next
             </Button>
           ) : (
