@@ -43,15 +43,22 @@ const Sidebar = () => {
       <Image src='/logo.png' alt='Logo' width={160} height={100} className='mb-5'/>
       <hr className='my-5' />
       <ul>
-        {menu.map((item,index)=>(
-          <Link href={item.path}>
-              <div className={`flex items-center gap-2 text-gray-600 hover:text-black hover:bg-gray-100 cursor-pointer p-2 rounded-md ${item.path==path&&"bg-gray-100 text-black"}`}>
-                <div className='text-3xl'>{item.icon}</div>
-                <div className='text-2xl'>{item.name}</div>
-              </div>
-          </Link>
-        ))};
-      </ul>
+  {menu.map((item) => (
+    <li key={item.path}>
+      <Link href={item.path}>
+        <div
+          className={`flex items-center gap-2 text-gray-600 hover:text-black hover:bg-gray-100 cursor-pointer p-2 rounded-md ${
+            item.path === path ? "bg-gray-100 text-black" : ""
+          }`}
+        >
+          <div className="text-3xl">{item.icon}</div>
+          <div className="text-2xl">{item.name}</div>
+        </div>
+      </Link>
+    </li>
+  ))}
+</ul>
+
           <div className='absolute bottom-10 w-[80%] '>
           <Progress value={33} />
           <h2>3 out of 5 Course Created</h2>

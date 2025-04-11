@@ -1,0 +1,35 @@
+Okay, here's a student-friendly video script based on the text you provided:
+
+**(Intro - Upbeat music and graphics of a smart lab)**
+
+Hey everyone, and welcome! Ever walked into a lab and seen the lights and fans blazing away even when nobody's there? Well, today we're diving into a super cool project: building a Smart Lab using the Internet of Things, or IoT!
+
+**(Explain Key Points - Friendly, conversational tone, maybe some simple animations)**
+
+So, what exactly is IoT? Think of it as connecting everyday objects – like lights, fans, and sensors – to the internet. This lets them talk to each other and to us! The idea isn't new, it's been around since 1999, and it’s used everywhere from healthcare to transportation.
+
+Why do we need a Smart Lab? Well, normal labs often waste a lot of electricity. Lights and fans are left on unnecessarily, leading to higher energy bills. Our Smart Lab aims to fix that!
+
+Imagine a lab that can think for itself. We're using sensors to monitor things like temperature and light levels. This information is sent to a mini-computer, in our case, a Raspberry Pi – think of it as the lab's brain. Based on this information, the Raspberry Pi can automatically turn lights and fans on or off. So, when a room is empty the lights automatically go off!
+
+How does it all work? There are a few important parts.
+
+First, **the sensors**. They gather data about the environment, like temperature, humidity, light and motion.
+Next is **the network**. These sensors send the data through a network, and it passes the data to the next layer.
+Then comes **the application layer**. The air conditioner can be switched on when the temperature increases!
+
+And what are the advantages? Well, there's better communication, automation and control, monitoring, better living conditions, better business opportunities and a better environment.
+
+It's like giving the lab a brain! This helps to save energy, reduce waste, and even make things more comfortable.
+
+Other smart labs exist, but our approach focuses on using a Raspberry Pi to analyze the data and control the appliances more effectively.
+
+We even built a prototype! It uses a motion sensor, a light sensor, and a temperature and humidity sensor, all connected to the Raspberry Pi. And from the data we collected, we found the lab reduces power consumption by 30 percent!
+
+**(Conclusion - Summarize and look to the future)**
+
+So, to wrap it up, our Smart Lab project demonstrates how IoT can be used to automate a computer lab, saving energy and reducing waste. There are some challenges, like making sure everything is secure and private. But, this is only the beginning! In the future, we can make the labs even more secure using something called Blockchain technology.
+
+**(Outro - Thank you message and call to action)**
+
+Thanks for watching! We hope you learned something new about IoT and Smart Labs. Let us know what you think in the comments below! Don't forget to like and subscribe for more awesome tech projects.
