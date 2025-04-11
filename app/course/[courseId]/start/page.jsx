@@ -1,14 +1,15 @@
-// In your app/course/[courseId]/start/page.jsx
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { db } from '@/configs/db'; // Make sure this path is correct
+import { CourseList, Chapters } from '@/configs/schema'; // Make sure this path is correct
+import { eq } from 'drizzle-orm';
 
 export default function CourseStartPage() {
   const params = useParams();
-  const router = useRouter();
   const { courseId } = params;
   
   const [course, setCourse] = useState(null);
@@ -18,78 +19,72 @@ export default function CourseStartPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCourseData = async () => {
-      try {
-        console.log('Fetching course with ID:', courseId);
-        
-        // Fetch chapters first
-        const chaptersResponse = await fetch(`/api/courses/${courseId}/chapters`);
-        console.log('Chapters response status:', chaptersResponse.status);
-        
-        if (!chaptersResponse.ok) {
-          const errorText = await chaptersResponse.text();
-          console.error('Failed to fetch chapters', errorText);
-          setError(`Failed to fetch chapters: ${chaptersResponse.status}`);
-          setLoading(false);
-          return;
-        }
-        
-        const chaptersData = await chaptersResponse.json();
-        console.log('Chapters data:', chaptersData);
-        
-        if (!chaptersData || chaptersData.length === 0) {
-          setError("No chapters found for this course");
-          setLoading(false);
-          return;
-        }
-        
-        setChapters(chaptersData);
-        
-        // Try to fetch course details
-        try {
-          const courseResponse = await fetch(`/api/courses/${courseId}`);
-          console.log('Course response status:', courseResponse.status);
-          
-          if (courseResponse.ok) {
-            const courseData = await courseResponse.json();
-            console.log('Course data:', courseData);
-            setCourse(courseData);
-          } else {
-            console.warn('Course data not found, continuing with chapters only');
-            // Create minimal course object
-            setCourse({
-              courseId: courseId,
-              name: "Course Content",
-              courseOutput: {
-                courseName: "Course Content",
-                description: "Video content for this course"
-              }
-            });
-          }
-        } catch (courseError) {
-          console.warn('Error fetching course:', courseError);
-          // Continue with chapters only
-          setCourse({
-            courseId: courseId,
-            name: "Course Content",
-            courseOutput: {
-              courseName: "Course Content",
-              description: "Video content for this course"
-            }
-          });
-        }
-        
-        setLoading(false);
-      } catch (error) {
-        console.error("Error in main fetch process:", error);
-        setError(`Error loading course: ${error.message}`);
-        setLoading(false);
+    // Mock data as a fallback
+    const mockChapters = [
+      {
+        chapterId: "chapter1",
+        content: {
+          title: "What is Python and Why Learn It?",
+          description: "An introduction to Python and its importance in today's programming landscape."
+        },
+        videoId: "Y8Tko2YC5hA"
+      },
+      {
+        chapterId: "chapter2",
+        content: {
+          title: "Setting Up Your Python Environment",
+          description: "Learn how to install Python and set up your development environment."
+        },
+        videoId: "YYXdXT2l-Gg"
+      },
+      {
+        chapterId: "chapter3",
+        content: {
+          title: "Basic Syntax and Your First Program",
+          description: "Understanding Python syntax and writing your first program."
+        },
+        videoId: "kqtD5dpn9C8"
+      },
+      {
+        chapterId: "chapter4",
+        content: {
+          title: "Variables and Data Types",
+          description: "Learn about different data types and how to use variables in Python."
+        },
+        videoId: "cQT33yu9pY8"
+      }
+    ];
+
+    const mockCourse = {
+      courseId: courseId,
+      name: "Beginner Python Programming in 2 Hours",
+      courseOutput: {
+        courseName: "Beginner Python Programming in 2 Hours",
+        description: "A fast-paced introduction to the fundamentals of Python programming.",
+        numberOfChapters: 4
       }
     };
 
-    if (courseId) {
-      fetchCourseData();
-    }
+    // Use mock data for now
+    setCourse(mockCourse);
+    setChapters(mockChapters);
+    setLoading(false);
+
+    // Later, you can replace with actual database queries
+    // For example:
+    // async function fetchData() {
+    //   try {
+    //     // Your database queries here
+    //   } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //     setError("Failed to load course data");
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // }
+    //
+    // fetchData();
+    
   }, [courseId]);
 
   const handleNextChapter = () => {
@@ -123,11 +118,10 @@ export default function CourseStartPage() {
     );
   }
 
-  // We'll continue if we have chapters, even if course data is minimal
-  if (chapters.length === 0) {
+  if (!course || chapters.length === 0) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="text-2xl font-bold mb-4">No content available for this course</div>
+        <div className="text-2xl font-bold mb-4">Course not found</div>
         <Link href="/courses">
           <Button>Back to Courses</Button>
         </Link>
@@ -145,7 +139,7 @@ export default function CourseStartPage() {
             ← Back to Course Overview
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold">{course?.courseOutput?.courseName || "Course Content"}</h1>
+        <h1 className="text-3xl font-bold">{course.courseOutput.courseName}</h1>
         <p className="text-gray-500 mt-2">Chapter {currentChapter + 1} of {chapters.length}</p>
       </div>
 
@@ -153,32 +147,20 @@ export default function CourseStartPage() {
         {/* Video and Content Section */}
         <div className="lg:col-span-2">
           <div className="bg-black rounded-xl overflow-hidden">
-            {currentChapterData.videoId ? (
-              <iframe
-                className="w-full aspect-video"
-                src={`https://www.youtube.com/embed/${currentChapterData.videoId}`}
-                title={currentChapterData.content?.title || `Chapter ${currentChapter + 1}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            ) : (
-              <div className="w-full aspect-video bg-gray-800 flex items-center justify-center text-white">
-                No video available for this chapter
-              </div>
-            )}
+            <iframe
+              className="w-full aspect-video"
+              src={`https://www.youtube.com/embed/${currentChapterData.videoId}`}
+              title={currentChapterData.content.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
 
           <div className="mt-6 bg-white rounded-xl shadow-sm p-6">
-            <h2 className="text-2xl font-bold mb-4">
-              {currentChapterData.content?.title || `Chapter ${currentChapter + 1}`}
-            </h2>
+            <h2 className="text-2xl font-bold mb-4">{currentChapterData.content.title}</h2>
             <div className="prose max-w-none">
-              {currentChapterData.content?.description ? (
-                <p>{currentChapterData.content.description}</p>
-              ) : (
-                <p>No description available for this chapter.</p>
-              )}
+              <p>{currentChapterData.content.description}</p>
             </div>
           </div>
 
@@ -219,9 +201,7 @@ export default function CourseStartPage() {
                   }`}>
                     {index + 1}
                   </div>
-                  <span className="font-medium">
-                    {chapter.content?.title || `Chapter ${index + 1}`}
-                  </span>
+                  <span className="font-medium">{chapter.content.title}</span>
                 </div>
               </div>
             ))}
