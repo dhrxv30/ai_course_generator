@@ -1,40 +1,51 @@
+
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div>
-      <section className="lg:grid lg:h-screen lg:place-content-center bg-slate-50">
-        <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-          <div className="mx-auto max-w-prose text-center">
-            <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-              Understand user flow and
-              <strong className="text-primary"> increase </strong>
-              conversions
-            </h1>
+    <motion.section
+      id="home"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="min-h-[calc(100vh-68px)] flex items-center justify-center bg-transparent"
+    >
+      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Transform Your Study Notes into Engaging Videos with
+            <span className="text-primary"> Amigo</span>
+          </h1>
 
-            <p className="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque,
-              nisi. Natus, provident accusamus impedit minima harum corporis
-              iusto.
-            </p>
+          <p className="mt-4 text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Upload your PDFs and watch AI turn them into clear summaries, flowcharts, and educational videos — all in one place.
+          </p>
 
-            <div className="mt-4 flex flex-col justify-center gap-4 sm:mt-6">
-              {/* <a
-                className="inline-block rounded border border-indigo-600 bg-primary px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
-                href="#"
-              >
-                Get Started
-              </a> */}
-              <Link href={"/dashboard"}>
-              <Button className="inline-block rounded border border-indigo-600 bg-primary px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700">Get Started</Button>
-              </Link>
-            </div>
+
+          <div className="mt-8 flex justify-center gap-4">
+            <Link href="/dashboard">
+              <button className="px-6 py-3 bg-primary text-white font-medium rounded-md shadow-md hover:bg-primary/90 transition-all transform hover:scale-105">
+                Start Learning Now
+              </button>
+            </Link>
+            <Link href="/summarize">
+              <button className="px-6 py-3 bg-white text-black font-medium rounded-md shadow-md hover:bg-gray-100 transition-all transform hover:scale-105">
+                Upload PDF
+              </button>
+            </Link>
           </div>
-        </div>
-      </section>
-    </div>
+        </motion.div>
+      </div>
+    </motion.section>
   );
 };
 
