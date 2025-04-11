@@ -101,8 +101,8 @@ export default function CourseStartPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-2xl font-bold">Loading course content...</div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-800">
+        <div className="text-2xl font-bold text-white">Loading course content...</div>
       </div>
     );
   }
@@ -132,15 +132,15 @@ export default function CourseStartPage() {
   const currentChapterData = chapters[currentChapter];
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container bg-gray-200 mx-auto py-8 px-4">
       <div className="mb-6">
         <Link href={`/course/${courseId}`}>
-          <Button variant="outline" className="mb-4">
+          <Button variant="outline" className="mb-4 bg-primary">
             ← Back to Course Overview
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold">{course.courseOutput.courseName}</h1>
-        <p className="text-gray-500 mt-2">Chapter {currentChapter + 1} of {chapters.length}</p>
+        <h1 className="text-3xl font-bold text-black">{course.courseOutput.courseName}</h1>
+        <p className="text-black mt-2">Chapter {currentChapter + 1} of {chapters.length}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -157,7 +157,7 @@ export default function CourseStartPage() {
             ></iframe>
           </div>
 
-          <div className="mt-6 bg-white rounded-xl shadow-sm p-6">
+          <div className="mt-6 bg-primary rounded-xl shadow-sm p-6">
             <h2 className="text-2xl font-bold mb-4">{currentChapterData.content.title}</h2>
             <div className="prose max-w-none">
               <p>{currentChapterData.content.description}</p>
@@ -166,9 +166,10 @@ export default function CourseStartPage() {
 
           <div className="mt-6 flex justify-between">
             <Button 
+            className='bg-primary'
               variant="outline" 
               onClick={handlePreviousChapter}
-              disabled={currentChapter === 0}
+              // disabled={currentChapter === 0}
             >
               Previous Chapter
             </Button>
@@ -183,21 +184,21 @@ export default function CourseStartPage() {
 
         {/* Chapters List */}
         <div className="bg-white rounded-xl shadow-sm p-6">
-          <h2 className="text-xl font-bold mb-4">Chapters</h2>
+          <h2 className="text-xl font-bold mb-4 text-black">Chapters</h2>
           <div className="space-y-2">
             {chapters.map((chapter, index) => (
               <div 
                 key={chapter.chapterId || index}
                 className={`p-3 rounded-lg cursor-pointer ${
                   index === currentChapter 
-                    ? "bg-primary text-white" 
-                    : "bg-gray-100 hover:bg-gray-200"
+                    ? "bg-black text-white"   
+                    : "bg-primary hover:bg-gray-200"
                 }`}
                 onClick={() => setCurrentChapter(index)}
               >
                 <div className="flex items-center gap-2">
                   <div className={`rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold ${
-                    index === currentChapter ? "bg-white text-primary" : "bg-primary text-white"
+                    index === currentChapter ? "bg-white text-black" : "bg-primary text-white"
                   }`}>
                     {index + 1}
                   </div>
