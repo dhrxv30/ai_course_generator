@@ -14,7 +14,7 @@ const TopicDescription = () => {
       <div className="mt-5">
         <label>
           Write the topic for Which you want to generate the Course (eg: Python,
-          React, SQL):{" "}
+          React, SQL, Medicine info, Or any Custom Topic):{" "}
         </label>
         <Input
           defaultValue={userCourseInput?.topic}

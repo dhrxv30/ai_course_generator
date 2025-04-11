@@ -9,7 +9,7 @@ const CreateCourseLayout = ({children}) => {
     <div>
     <UserInpuContext.Provider value={{userCourseInput,setUserCourseInput}}>
         <>
-          <Header/>
+          {/* <Header/> */}
           {children}
         </>
     </UserInpuContext.Provider>

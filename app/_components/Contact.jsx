@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { IoIosSend } from "react-icons/io";
 
 const Contact = () => {
   const [result, setResult] = React.useState("");
@@ -78,7 +79,7 @@ const Contact = () => {
                 className="flex items-center px-6 py-2 bg-primary text-white font-medium rounded-md shadow-md hover:bg-primary/90 transition-all transform hover:scale-105 text-sm"
               >
                 Send
-                <img src="/white-arrow.png" alt="Arrow" className="w-4 h-4 ml-2" />
+                <IoIosSend className="w-4 h-4 ml-2" />
               </button>
               <span className="block text-xs text-gray-400">{result}</span>
             </form>

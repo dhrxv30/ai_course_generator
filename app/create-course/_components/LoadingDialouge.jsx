@@ -19,7 +19,7 @@ const LoadingDialouge = ({loading}) => {
       
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="flex justify-center">Please Wait...let the AI Generate the Course for you</AlertDialogTitle>
+          <AlertDialogTitle className="flex justify-center text-black">Please Wait...let the AI Generate the Course for you</AlertDialogTitle>
           <AlertDialogDescription>
           <div className='flex justify-center py-10'>
           <Image src={'/loader.gif'} width={100} height={100} />

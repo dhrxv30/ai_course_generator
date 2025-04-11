@@ -114,7 +114,7 @@ const CreateCourse = () => {
                     activeIndex >= index && "bg-primary"
                   }`}
                 >
-                  {item.icon}
+                  {item.icon  }
                 </div>
                 <h3 className="hidden md:block md:text-sm">{item.name}</h3>
               </div>
@@ -135,13 +135,14 @@ const CreateCourse = () => {
         {renderStepComponent()}
 
         <div className="flex items-center justify-between mt-10">
-          <Button
-            disabled={activeIndex === 0}
+          {/* <Button
+            // disabled={activeIndex === 0}
             variant="outline"
             onClick={() => setActiveIndex(activeIndex - 1)}
           >
             Back
-          </Button>
+          </Button> */}
+          <Button onClick={() => setActiveIndex(activeIndex - 1)}>Back</Button>
           {activeIndex < StepperOptions.length - 1 ? (
             <Button disabled={checkStatus()} onClick={() => setActiveIndex(activeIndex + 1)}>
               Next
