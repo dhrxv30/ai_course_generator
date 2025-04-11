@@ -61,26 +61,6 @@ const Sidebar = () => {
         <Progress value={33} />
         <h2 className="text-sm mt-2 text-gray-600">3 out of 5 Courses Created</h2>
       </div>
-  {menu.map((item) => (
-    <li key={item.path}>
-      <Link href={item.path}>
-        <div
-          className={`flex items-center gap-2 text-gray-600 hover:text-black hover:bg-gray-100 cursor-pointer p-2 rounded-md ${
-            item.path === path ? "bg-gray-100 text-black" : ""
-          }`}
-        >
-          <div className="text-3xl">{item.icon}</div>
-          <div className="text-2xl">{item.name}</div>
-        </div>
-      </Link>
-    </li>
-  ))}
-</ul>
-
-          <div className='absolute bottom-10 w-[80%] '>
-          <Progress value={33} />
-          <h2>3 out of 5 Course Created</h2>
-          </div>
     </div>
   );
 };
