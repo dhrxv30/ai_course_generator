@@ -1,4 +1,7 @@
+
 "use client";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -26,6 +29,7 @@ const Hero = () => {
           <p className="mt-4 text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Upload your PDFs and watch AI turn them into clear summaries, flowcharts, and educational videos — all in one place.
           </p>
+
 
           <div className="mt-8 flex justify-center gap-4">
             <Link href="/dashboard">
