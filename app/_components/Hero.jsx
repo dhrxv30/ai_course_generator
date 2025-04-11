@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
@@ -18,13 +20,16 @@ const Hero = () => {
               iusto.
             </p>
 
-            <div className="mt-4 flex justify-center gap-4 sm:mt-6">
-              <a
+            <div className="mt-4 flex flex-col justify-center gap-4 sm:mt-6">
+              {/* <a
                 className="inline-block rounded border border-indigo-600 bg-primary px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
                 href="#"
               >
                 Get Started
-              </a>
+              </a> */}
+              <Link href={"/dashboard"}>
+              <Button className="inline-block rounded border border-indigo-600 bg-primary px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700">Get Started</Button>
+              </Link>
             </div>
           </div>
         </div>
