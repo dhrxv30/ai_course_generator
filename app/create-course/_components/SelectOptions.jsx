@@ -29,9 +29,9 @@ const SelectOptions = () => {
               <SelectValue placeholder="Select Difficulty" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Begineer">Begineer</SelectItem>
+              <SelectItem value="Begineer">Beginner</SelectItem>
               <SelectItem value="Intermediate">Intermediate</SelectItem>
-              <SelectItem value="Pro">Pro</SelectItem>
+              <SelectItem value="Pro">Advanced</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -39,7 +39,7 @@ const SelectOptions = () => {
           <label className="text-sm font-medium">Course Duration</label>
           <Select defaultValue={userCourseInput?.duration} onValueChange={(value)=>handleSelectChange('duration',value)}>
             <SelectTrigger className="">
-              <SelectValue placeholder="Select Difficulty" />
+              <SelectValue placeholder="Select Duration" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="1 Hour">1 Hour</SelectItem>

@@ -1,0 +1,41 @@
+Hey everyone, and welcome! Ever wondered how we keep the lights on when the sun isn't shining or the wind isn't blowing? The answer is energy storage!
+
+Think of energy storage as keeping energy available for when we need it most. Like having a full gas tank ready to go, or a backup battery for your phone. Why is this so important? Well, imagine a sudden power outage – everything grinds to a halt, right? Energy storage helps prevent that.
+
+More specifically, energy storage is a means of storing energy in a readily recoverable form when supply exceeds the demand for use at other times.
+
+One big reason we need energy storage is for renewable energy sources like solar and wind. These are awesome, but they're not always consistent. Energy storage lets us capture that sunlight or wind power and use it later, even when the sun's down or the wind dies down.
+
+Also, sometimes, the places where we generate energy are far away from where we actually need it. Think about ocean thermal energy conversion, where energy may be generated at a location that is too distant from a consumption center for conventional transmission lines to be used. So we need a way to store that energy and transport it efficiently.
+
+And get this: energy storage can even save us money! Power companies can use more efficient plants all the time and store the extra energy when demand is low. Then, during peak hours, when everyone's using electricity, they can use that stored energy instead of firing up less efficient plants.
+
+So, how do we actually store energy? There are several cool ways!
+
+First up, we have mechanical energy storage. This includes things like pumped storage, where water is pumped uphill to a reservoir and then released to generate electricity when needed. There's also compressed air storage, where air is squeezed into underground caverns and then released to power turbines. Another interesting method is flywheel storage, using spinning wheels to store kinetic energy.
+
+Then, there's chemical energy storage. This involves batteries, which we all know and love. Also there's hydrogen storage, and reversible chemical reactions, which can store energy in the bonds of molecules.
+
+We also have electromagnetic and electrostatic energy storage but won't get into these today.
+
+Finally, there’s thermal energy storage. This can involve storing heat in materials like water or rocks.
+
+Let's take a closer look at a few of these!
+
+Pumped storage is the most widely used for electric utilities. It's like a giant battery using water.
+
+Compressed air storage uses excess electric power to compress air for future use, giving an overall recovery efficiency of 65 to 70%.
+
+Flywheels store energy as kinetic energy, and can give an energy recovery efficiency up to 90%!
+
+Batteries are an electrochemical storage device and one of the most common methods. Lead-acid batteries are the most widely used storage battery.
+
+Hydrogen storage is an energy storage method where energy can be stored and transported as hydrogen.
+
+And Reversible chemical reactions storage use chemical reactions to store heat.
+
+As you can see, there are lots of different ways to store energy, each with its own advantages.
+
+So, to recap, energy storage is essential for using renewable energy effectively, transporting energy efficiently, and making our power grid more reliable and cost-effective. From giant pumped storage plants to the battery in your phone, energy storage is all around us, powering our world!
+
+That's it for this video! Hope you learned something new about the fascinating world of energy storage. See you next time!

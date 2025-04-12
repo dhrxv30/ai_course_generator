@@ -1,0 +1,47 @@
+**(Intro Music with upbeat, positive vibes)**
+
+**Host (Energetic and friendly):** Hey everyone, and welcome! Ever feel like your textbooks are speaking a different language? Or that you're spending hours just trying to summarize a single chapter? Well, get ready to meet your new best friend in the world of learning: Amigo!
+
+**(Transition to a screen showing the Amigo logo and tagline: "Transforming Academic Content")**
+
+**Host:** Amigo is all about making learning easier, more engaging, and way more visual. Think of it as your super-powered study buddy that uses AI to transform boring old academic content into something awesome! We're BrainDraft, and we're so excited to show you what Amigo can do.
+
+**(Transition to a screen showcasing key features with engaging visuals)**
+
+**Host:** So, what exactly does Amigo do? It takes complex academic stuff and simplifies it into visual formats that are super easy to understand. Imagine taking a dense research paper and turning it into a clear flowchart, or a captivating video lesson!
+
+**(Host:** How does it work? Well, Amigo uses the power of AI to automatically pull out the important bits from your study materials. Think of it as AI-powered highlighting and summarizing, all done for you in a snap! This solves the biggest problems in learning: it's not scalable or easy to create good study materials. With Amigo, educators can make more content in less time!
+
+**(Host:** Amigo acts like your personal, intelligent study assistant. It can grab text from PDFs, give you AI-powered summaries, and even create cool visual flowcharts using something called Mermaid.js. But it doesn’t stop there! It can even turn those PDFs into personalized video courses, making learning way more interactive and fun. We even plan to add quizzes and flashcards to reinforce what you’ve learned!
+
+**(Transition to a screen explaining the technical side in a simplified way, perhaps with colorful blocks representing different technologies)**
+
+**Host:** Now, for the techy stuff – but don't worry, we'll keep it simple! Amigo uses a bunch of cool technologies to make all this magic happen. We use HTML, CSS, and JavaScript to make the user interface interactive. On the backend, Python with Flask handles all the server logic. And to make things super smart, we've integrated Google's Gemini 2.0 Flash AI using Google Generative AI API for content processing.
+
+**(Transition to a flowchart visually representing the AI Logic & Implementation Overview)**
+
+**Host:** So how does the AI work exactly? First we're using Gemini 2.0 Flash because it integrates well with Google. Then we have an intelligent prompting system that guides the AI to generate helpful explanations. With these prompts, we can generate summaries that are easy to understand, create flowcharts, and generate video scripts.
+
+**(Transition to a screen showcasing different use cases with relevant visuals)**
+
+**Host:** Okay, so who can use Amigo? Pretty much everyone!
+
+*   **Educational Institutions:** Universities can use Amigo to boost their materials and create visual lectures.
+*   **Online Learning Platforms:** Scale up content creation across all kinds of subjects.
+*   **Libraries:** Turn old archives into resources that are perfect for today's students.
+*   **Individual Users:** Students can simplify difficult materials, self-learners can turn PDFs into structured formats, and researchers can quickly visualize key concepts from papers.
+
+**(Host:** And it’s not just for school! In the real world:
+
+*   **Enterprise Applications:** Create visual training materials for employees
+*   **Knowledge Management:** Transform corporate documents into easy-to-understand learning resources.
+
+**(Conclusion - with a positive and encouraging tone)**
+
+**Host:** So, there you have it! Amigo is here to change the game in education and make learning accessible and enjoyable for everyone. We're excited to see how you use Amigo to unlock your full learning potential.
+
+**(Transition to a screen with a call to action - like visiting a website or trying a demo)**
+
+**Host:** Head over to [Your Website Here] to learn more and start transforming your learning experience today! Thanks for watching, and happy studying!
+
+**(Outro Music with upbeat, positive vibes)**

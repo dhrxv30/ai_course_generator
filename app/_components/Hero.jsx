@@ -38,9 +38,8 @@ const Hero = () => {
               <button className="px-6 py-3 bg-white text-black font-medium rounded-md shadow-md hover:bg-gray-100 transition-all transform hover:scale-105">
                 Upload PDF
               </button>
+
             </Link>
-            <div className="mt-4 flex flex-col justify-center gap-4 sm:mt-6">
-            </div>
           </div>
         </motion.div>
       </div>

@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
+import { MdSend } from "react-icons/md";
 
 const AddCourse = () => {
   return (
@@ -10,7 +11,7 @@ const AddCourse = () => {
             <p className='text-sm text-gray-500' >Create New Course with AI and share it with your friend</p>
         </div>
         <Link href='/create-course'>
-        <Button className=' text-white mt-5'>Create Course</Button>
+        <Button className=' text-white mt-5'>Create Course<MdSend /></Button>
         </Link>
     </div>
   )

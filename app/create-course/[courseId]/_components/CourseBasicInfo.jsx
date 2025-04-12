@@ -16,10 +16,10 @@ const CourseBasicInfo = ({course}) => {
             <h2 className='font-bold text-2xl'>{course?.courseOutput?.courseName}</h2>
             <p className='text-sm text-gray-400 mt-3'>{course?.courseOutput?.description}</p>
             <h2>{course?.courseOutput?.category}</h2>
-            <Link href={'/course'+course?.courseId+'/start'}>
-            <Button className="w-full mt-5">Start</Button>
+            {/* Updated link to use proper Next.js routing */}
+            <Link href={`/course/${course?.courseId}/start`}>
+              <Button className="w-full mt-5">Start</Button>
             </Link>
-
             </div>
         <div>
         <label htmlFor="upload-image" className='cursor-pointer'>
@@ -28,7 +28,6 @@ const CourseBasicInfo = ({course}) => {
           <input type="file" id='upload-image' className='opacity-0' onChange={onFileSelected}/>
         </div>
       </div>
-      
     </div>
   )
 }
