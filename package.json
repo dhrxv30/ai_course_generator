@@ -40,7 +40,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/pg": "^8.11.11",
-    "drizzle-kit": "^0.19.1",
+    "drizzle-kit": "^0.18.1",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "tailwindcss": "^4"
