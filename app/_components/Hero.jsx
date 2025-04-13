@@ -1,4 +1,3 @@
-
 "use client";
 import { Button } from "@/components/ui/button";
 import React from "react";
@@ -29,7 +28,6 @@ const Hero = () => {
             Upload your PDFs and watch AI turn them into clear summaries, flowcharts, and educational videos — all in one place.
           </p>
 
-
           <div className="mt-8 flex justify-center gap-4">
             <Link href="/dashboard">
               <button className="px-6 py-3 bg-primary text-white font-medium rounded-md shadow-md hover:bg-primary/90 transition-all transform hover:scale-105">
@@ -40,6 +38,7 @@ const Hero = () => {
               <button className="px-6 py-3 bg-white text-black font-medium rounded-md shadow-md hover:bg-gray-100 transition-all transform hover:scale-105">
                 Upload PDF
               </button>
+
             </Link>
           </div>
         </motion.div>
