@@ -1,36 +1,209 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## AMIGO-AI
 
-## Getting Started
+<p align="center">
+  <img src="public/home.jpg" alt="Project Banner" width="100%" />
+</p>
 
-First, run the development server:
+A full-stack web application that lets users generate structured course outlines with AI. Users provide a topic, and the app creates a course structure, generates lesson content, and optionally builds flowcharts/visual diagrams—leveraging Google Generative AI and modern UI components.
+
+Frontend: Built on Next.js & React, Tailwind, mermaid.js for diagrams.
+
+Backend/DB: Serverless Postgres (NeonDB), drizzle ORM.
+
+Features: Course/lesson generation, real-time updates, stylish UI.
+
+## Features
+
+- Automated Lesson & Content Generation: Each course includes AI-generated lesson titles, summaries, and detailed content to accelerate curriculum design.
+
+- Visual Flowcharts with Mermaid: Converts course structure into interactive, auto-generated flowcharts for better visualization and planning.
+
+- Persistent Storage: Save, load, and manage courses securely with a serverless PostgreSQL (NeonDB) backend and drizzle-ORM integration.
+
+- Modern, Responsive UI: Enjoy a beautiful, intuitive interface built with Next.js, Tailwind (via shadcn/ui), and Radix UI components—optimized for all devices.
+
+## Tech Stack
+
+- **Frontend:** Next.js, Tailwind CSS,
+- **Backend/API:** Next.js API routes
+- **Database:** PostgreSQL (NeonDB, serverless), drizzle-ORM
+- **AI Integration:** Google Generative AI APIs
+- **Visualization:** Mermaid.js (for generating flowcharts/diagrams)
+
+### Installation Guide
+
+Follow these steps to set up and run your **AI Course Generator** locally and in development:
+
+#### 1. **Clone the Repository**
+
+```bash
+git clone https://github.com/Sahil-SS/ai_course_generator.git
+cd ai_course_generator
+```
+
+#### 2. **Install Dependencies**
+
+```bash
+npm install
+```
+
+#### 3. **Configure Environment Variables**
+
+- Copy `.env.example` (or create a new file) and rename it to `.env.local`.
+- Add your database connection string (PostgreSQL/NeonDB) and your Google Generative AI key:
+
+```env
+NEXT_PUBLIC_DATABASE_URL=your_postgres_url
+GOOGLE_GENAI_API_KEY=your_google_api_key
+```
+
+- Update any other settings required by your drizzle/postgres config or AI API.
+
+#### 4. **Set Up the Database**
+
+- Use drizzle ORM commands to push your schema and open the database studio:
+
+```bash
+npm run db:push    # Sync schema to NeonDB/Postgres
+npm run db:studio  # (Optional) Open visual DB browser
+```
+
+#### 5. **Start the Development Server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- The app will be available at [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+#### 6. **Access and Use the Application**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Open your browser and navigate to `http://localhost:3000`
+- Enter a topic to generate AI-powered course structure, lessons, and diagrams.
 
-## Learn More
+### 7. **Backend Setup (Python + Flask)**
 
-To learn more about Next.js, take a look at the following resources:
+- Enter the Backend Directory
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cd backend
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Create a Python Virtual Environment
 
-## Deploy on Vercel
+```python
+python -m venv venv
+source venv/bin/activate        # Mac/Linux
+venv\Scripts\activate           # Windows
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Install Dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pip install -r requirements.txt
+# or manually:
+pip install flask flask-cors PyPDF2 python-dotenv google-generativeai
+```
+
+- Set Environment Variables
+
+```bash
+GEMINI_API_KEY= "your_google_gemini_key"
+```
+
+- Run the Backend Server
+
+```bash
+python app.py
+# Backend available at http://127.0.0.1:5000
+```
+
+### Usage Guide
+
+These are the main ways users can interact with and benefit from your **AI Course Generator** site:
+
+- **Instant Course Creation:**  
+  Enter a topic or subject (e.g., "Introduction to Machine Learning") in the prompt box. The site generates a complete course outline with modules and lessons using AI.
+
+- **AI-Generated Lesson Content:**  
+  For each lesson, the AI generates summaries and detailed descriptions, helping educators or self-learners quickly scaffold new curricula.
+
+- **Visualize with Flowcharts:**  
+  View your course structure as an auto-generated flowchart or diagram (powered by Mermaid.js) to easily grasp the flow and hierarchy of lessons.
+
+- **Save and Revisit Courses:**  
+  Users can save generated courses to the database (PostgreSQL via NeonDB). Retrieve, edit, or continue working on previous courses from any device.
+
+- **Responsive and Modern Interface:**  
+  The UI adapts to desktops, tablets, and mobiles, providing a seamless experience for teachers, trainers, and EdTech teams.
+
+##### Example Workflow
+
+1. **Go to the home page.**
+2. **Type a course topic** (“Digital Marketing Fundamentals”) and submit.
+3. Review **AI-generated course outline & lessons**.
+4. Examine the **flowchart** for the course structure.
+5. **Save or export** your course for later use.
+6. **Return or share** the link to continue editing or presenting the content.
+
+### Future Upgrades
+
+- **User Authentication & Profiles:**  
+  Allow users to create accounts, save personal course libraries, and manage/retrieve their content from any device.
+
+- **Collaboration Features:**  
+  Let multiple users co-edit, comment, or review the same course for team-based curriculum design.
+
+- **Export & Sharing Options:**  
+  Support exporting courses and lessons as PDF, EPUB, SCORM, or plain Markdown for use in LMS platforms or offline.
+
+- **Advanced AI Content:**  
+  Enable generation of quizzes, homework, slides, and interactive exercises in each lesson. Integrate AI that can also suggest multimedia or open educational resources.
+
+- **Customization & Templates:**  
+  Offer instructors the ability to customize the course structure, lesson templates, or generation parameters (e.g., skill level, lesson count).
+
+- **Localization & Multilingual AI:**  
+  Translate course content into multiple languages on the fly to support global learners.
+
+- **Analytics & Progress Tracking:**  
+  Add dashboards for users to view course creation stats, engagement, or learner progress if the platform evolves to host learning directly.
+
+- **Improved Flowchart & Visualization:**  
+  Add drag-n-drop editing, nested diagrams, or downloadable image exports for the AI-generated flowcharts.
+
+- **Mobile App Version:**  
+  Create a companion mobile app for on-the-go course creation and review.
+
+## Screenshots
+
+<p align="center">
+  <figure style="display: inline-block; text-align: center; margin: 0 10px;">
+    <img src="./public/home.jpg" width="300" />
+    <figcaption>Home Page</figcaption>
+  </figure>
+  <figure style="display: inline-block; text-align: center; margin: 0 10px;">
+    <img src="./public/course-creation.jpg" width="300" />
+    <figcaption>Course Creation</figcaption>
+  </figure>
+  <figure style="display: inline-block; text-align: center; margin: 0 10px;">
+    <img src="./public/generated-course.jpg" width="300" />
+    <figcaption>Generated Course</figcaption>
+  </figure>
+  <figure style="display: inline-block; text-align: center; margin: 0 10px;">
+    <img src="./public/saved-courses.jpg" width="300" />
+    <figcaption>Saved Courses</figcaption>
+  </figure>
+  <figure style="display: inline-block; text-align: center; margin: 0 10px;">
+    <img src="./public/pdf-summary.jpg" width="300" />
+    <figcaption>PDF Summary</figcaption>
+  </figure>
+  <figure style="display: inline-block; text-align: center; margin: 0 10px;">
+    <img src="./public/contact.jpg" width="300" />
+    <figcaption>Contact Us</figcaption>
+  </figure>
+</p>
+
+## Project Walkthrough
+
+[![Demo Video](screenshots/demo-thumbnail.png)](https://youtu.be/_1pr2ObXY8g)
