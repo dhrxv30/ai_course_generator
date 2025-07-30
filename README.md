@@ -25,7 +25,7 @@ Features: Course/lesson generation, real-time updates, stylish UI.
 ## Tech Stack
 
 - **Frontend:** Next.js, Tailwind CSS,
-- **Backend/API:** Next.js API routes
+- **Backend/API:** Python, Mermaid API, Gemini API, YouTube API
 - **Database:** PostgreSQL (NeonDB, serverless), drizzle-ORM
 - **AI Integration:** Google Generative AI APIs
 - **Visualization:** Mermaid.js (for generating flowcharts/diagrams)
@@ -50,11 +50,13 @@ npm install
 #### 3. **Configure Environment Variables**
 
 - Copy `.env.example` (or create a new file) and rename it to `.env.local`.
-- Add your database connection string (PostgreSQL/NeonDB) and your Google Generative AI key:
+- Add your database connection string (PostgreSQL/NeonDB) and your Google Generative AI key and YouTube API key
 
 ```env
-NEXT_PUBLIC_DATABASE_URL=your_postgres_url
-GOOGLE_GENAI_API_KEY=your_google_api_key
+NEXT_PUBLIC_GEMINI_API_KEY
+NEXT_PUBLIC_DATABASE_URL
+NEXT_PUBLIC_YOUTUBE_API_KEY
+NEXT_PUBLIC_HOST_NAME= http://localhost:3000/
 ```
 
 - Update any other settings required by your drizzle/postgres config or AI API.
@@ -203,7 +205,3 @@ These are the main ways users can interact with and benefit from your **AI Cours
     <figcaption>Contact Us</figcaption>
   </figure>
 </p>
-
-## Project Walkthrough
-
-[![Demo Video](screenshots/demo-thumbnail.png)](https://youtu.be/_1pr2ObXY8g)
